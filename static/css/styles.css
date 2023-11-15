@@ -1,7 +1,7 @@
 /* css/styles.css */
 
 body {
-    background-color: #935fc7;
+    background-color: #e9e5ec;
     color: #343a40;
     font-family: 'Helvetica Neue', Arial, sans-serif;
 }
@@ -12,6 +12,10 @@ body {
     padding: 4rem;
     border-radius: 0.3rem;
     text-align: center;
+}
+
+.color {
+    color: #fff; 
 }
 
 .jumbotron h1 {
