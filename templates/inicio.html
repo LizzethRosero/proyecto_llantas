@@ -3,81 +3,98 @@
 
 {% block content %}
 <div class="body">
-<div class="container mt-5">
+    <div class="container mt-5">
 
-<!-- Slider de Imágenes -->
-        <div class="owl-carousel owl-theme">
-            <div class="item"><img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Slider 1"></div>
-            <div class="item"><img src="{{ url_for('static', filename='img/error_404.png') }}" alt="Slider 2"></div>
-            <div class="item"><img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Slider 3"></div>
+        <!-- Slider de Imágenes -->
+        <div id="carouselExampleCaptions" class="carousel slide w-75 mx-auto" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="8000">
+                    <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" class="d-block w-100" alt="Llanta 1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First Slide Label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="8000">
+                    <img src="{{ url_for('static', filename='img/error_404.png') }}" class="d-block w-100"
+                        alt="Error 404">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second Slide Label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="8000">
+                    <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" class="d-block w-100" alt="Llanta 1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third Slide Label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
-    <div class="jumbotron">
-        <h1 class="display-4">Bienvenido a LlantasExpress</h1>
-        <p class="lead">Descubre las mejores opciones de llantas para tu vehículo.</p>
-        <hr class="my-4">
-        <p>En nuestro compromiso por brindarte la mejor calidad y servicio, contamos con un amplio catálogo de llantas de las marcas más reconocidas.</p>
-        <p>Explora nuestras ofertas y encuentra la llanta perfecta para tu conducción.</p>
-        <a class="btn btn-primary btn-lg color" href="#" role="button">Ver Catálogo</a>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h2>¿Quiénes Somos?</h2>
-            <p>Somos apasionados por los vehículos y la seguridad en la carretera. Nuestra misión es proporcionar a nuestros clientes las mejores llantas para garantizar un viaje seguro y cómodo.</p>
+        <div class="jumbotron">
+            <h1 class="display-4">Bienvenido a LlantasExpress</h1>
+            <p class="lead">Descubre las mejores opciones de llantas para tu vehículo.</p>
+            <hr class="my-4">
+            <p>En nuestro compromiso por brindarte la mejor calidad y servicio, contamos con un amplio catálogo de
+                llantas de las marcas más reconocidas.</p>
+            <p>Explora nuestras ofertas y encuentra la llanta perfecta para tu conducción.</p>
+            <a class="btn btn-primary btn-lg color" href="#" role="button">Ver Catálogo</a>
         </div>
-        <div class="col-md-6">
-            <h2>Nuestros Servicios</h2>
-            <p>Ofrecemos una amplia variedad de llantas para automóviles, camiones y SUVs. Además, brindamos servicios de instalación y asesoramiento personalizado para asegurarnos de que elijas la llanta adecuada para tus necesidades.</p>
-        </div>
-    </div>
 
-    <div class="services">
-        <h2>Nuestros Productos</h2>
         <div class="row">
-            <div class="col-md-4">
-                <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 1">
-                <p>Llanta de Verano</p>
+            <div class="col-md-6">
+                <h2>¿Quiénes Somos?</h2>
+                <p>Somos apasionados por los vehículos y la seguridad en la carretera. Nuestra misión es proporcionar a
+                    nuestros clientes las mejores llantas para garantizar un viaje seguro y cómodo.</p>
             </div>
-            <div class="col-md-4">
-                <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 2">
-                <p>Llanta de Invierno</p>
+            <div class="col-md-6">
+                <h2>Nuestros Servicios</h2>
+                <p>Ofrecemos una amplia variedad de llantas para automóviles, camiones y SUVs. Además, brindamos
+                    servicios de instalación y asesoramiento personalizado para asegurarnos de que elijas la llanta
+                    adecuada para tus necesidades.</p>
             </div>
-            <div class="col-md-4">
-                <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 3">
-                <p>Llanta Todo Terreno</p>
+        </div>
+
+        <div class="services">
+            <h2>Nuestros Productos</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 1">
+                    <p>Llanta de Verano</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 2">
+                    <p>Llanta de Invierno</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 3">
+                    <p>Llanta Todo Terreno</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
-</div>
 
-<!-- Script para inicializar el slider -->
-<script>
-    $(document).ready(function(){
-        $('.owl-carousel').owlCarousel({
-            loop: true,
-            margin: 10,
-            responsiveClass: true,
-            responsive:{
-                0:{
-                    items: 1,
-                    nav: true
-                },
-                600:{
-                    items: 3,
-                    nav: false
-                },
-                1000:{
-                    items: 5,
-                    nav: true,
-                    loop: false
-                }
-            }
-        });
-    });
-</script>
 
 {% endblock %}
-
-
