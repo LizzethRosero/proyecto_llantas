@@ -49,4 +49,51 @@ h2 {
     height: auto;
 }
 
+.catalogo-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.llanta-item {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.llanta-item img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.llanta-info {
+    padding: 10px;
+}
+
+.llanta-info h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.precio {
+    color: #e44d26;
+    font-weight: bold;
+}
+
+.btn-add-carrito {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-add-carrito:hover {
+    background-color: #45a049;
+}
+
 

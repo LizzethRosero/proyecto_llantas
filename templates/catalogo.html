@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %} Catálogo de Llantas {% endblock %}
+
+{% block content %}
+    <div class="catalogo-container">
+        <h1>Bienvenido a nuestro Catálogo de Llantas</h1>
+
+        {% for llanta in llantas %}
+            <div class="llanta-item">
+                <img src="{{ llanta.imagen }}" alt="{{ llanta.nombre }}">
+                <div class="llanta-info">
+                    <h2>{{ llanta.nombre }}</h2>
+                    <p class="precio">Precio: {{ llanta.precio }} COP</p>
+                    <p>{{ llanta.descripcion }}</p>
+                    <button class="btn-add-carrito">Añadir al Carrito</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

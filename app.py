@@ -15,6 +15,9 @@ def login():
 def michelin():
    return render_template('michelin.html')
 
+@app.route('/catalogo')
+def catalogo():
+   return render_template('catalogo.html')
 
 @app.errorhandler(404)
 def page_not_found(error):
