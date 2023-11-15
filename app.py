@@ -11,9 +11,6 @@ def inicio():
 def login():
    return render_template('login.html')
 
-@app.route('/marcas/michelin')
-def michelin():
-   return render_template('michelin.html')
 
 @app.route('/catalogo')
 def catalogo():
