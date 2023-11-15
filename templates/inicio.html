@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %} Pagina inicio {% endblock %}
+
+{% block content %}
+<div class="body">
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Bienvenido a Nuestra Tienda de Llantas</h1>
+        <p class="lead">Descubre las mejores opciones de llantas para tu vehículo.</p>
+        <hr class="my-4">
+        <p>En nuestro compromiso por brindarte la mejor calidad y servicio, contamos con un amplio catálogo de llantas de las marcas más reconocidas.</p>
+        <p>Explora nuestras ofertas y encuentra la llanta perfecta para tu conducción.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Ver Catálogo</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>¿Quiénes Somos?</h2>
+            <p>Somos apasionados por los vehículos y la seguridad en la carretera. Nuestra misión es proporcionar a nuestros clientes las mejores llantas para garantizar un viaje seguro y cómodo.</p>
+        </div>
+        <div class="col-md-6">
+            <h2>Nuestros Servicios</h2>
+            <p>Ofrecemos una amplia variedad de llantas para automóviles, camiones y SUVs. Además, brindamos servicios de instalación y asesoramiento personalizado para asegurarnos de que elijas la llanta adecuada para tus necesidades.</p>
+        </div>
+    </div>
+
+    <div class="services">
+        <h2>Nuestros Productos</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 1">
+                <p>Llanta de Verano</p>
+            </div>
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 2">
+                <p>Llanta de Invierno</p>
+            </div>
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 3">
+                <p>Llanta Todo Terreno</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+
