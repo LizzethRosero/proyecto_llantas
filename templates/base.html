@@ -24,9 +24,9 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-primary">
+  <nav class="navbar navbar-expand-lg bg-" >
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <img src="{{url_for('static', filename='img/logo.png' )}}" alt="icon" width="50" height="50">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -36,10 +36,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link active" aria-current="page" href="/">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Catalogo</a>
+            <a class="nav-link active" aria-current="page" href="/catalogo">Catalogo</a>
           </li>
           <!-- <li class="nav-item">
             <div class="dropdown">
@@ -55,7 +55,7 @@
             </div>
           </li> -->
           <li class="nav-item">
-            <a class="btn btn-outline-primary nav-link" href="" style="width: 150px;">
+            <a class="btn btn-outline-primary nav-link" href="/login" style="width: 150px;">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-person-circle" viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
@@ -71,7 +71,7 @@
 
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="btn btn-outline-secondary" href="">
+          <a class="btn btn-outline-secondary" href="/carrito">
             <img src="{{url_for('static', filename='img/cart.png' )}}" fill="currentColor" class="bi bi-person-circle"
               alt="icon" width="50" height="50">
             Carrito
@@ -97,8 +97,8 @@
         <div class="col-md-4">
           <h5>Enlaces Rápidos</h5>
           <ul class="list-unstyled">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Catálogo</a></li>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/catalogo">Catálogo</a></li>
             <li><a href="#">Contacto</a></li>
 
           </ul>

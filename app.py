@@ -9,12 +9,26 @@ def inicio():
 
 @app.route('/login')
 def login():
-   return render_template('login.html')
+   return render_template('cuentalog.html')
 
+@app.route('/login/registro')
+def registro():
+   return render_template('registro.html')
+
+@app.route('/carrito')
+def carrito():
+   return render_template('carrito.html')
 
 @app.route('/catalogo')
 def catalogo():
    return render_template('catalogo.html')
+
+@app.route('/marcas/michelin')
+def michelin():
+   return render_template('michelin.html')
+
+
+
 
 @app.errorhandler(404)
 def page_not_found(error):
