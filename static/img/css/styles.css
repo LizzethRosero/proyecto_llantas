@@ -1,21 +1,17 @@
 /* css/styles.css */
 
 body {
-    background-color: #e9e5ec;
+    background-color: #f8f9fa;
     color: #343a40;
     font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 .jumbotron {
-    background-color: #1a1c1f;
+    background-color: #007bff;
     color: #fff;
     padding: 4rem;
     border-radius: 0.3rem;
     text-align: center;
-}
-
-.color {
-    color: #fff; 
 }
 
 .jumbotron h1 {
