@@ -20,4 +20,4 @@ def registro():
       #realizar el proceso de inicop de sesion  o login
       return redirect(url_for("catalogo.catalogo"))
    else:
-      return render_template('registro.html')
+      return render_template('registro.html', form=form)
