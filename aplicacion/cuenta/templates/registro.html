@@ -1,28 +1,12 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{{url_for('cuenta.static', filename='styles.css')}}">
+
 {% extends "base.html" %}
 {% block title %} Registro {% endblock %}
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <!-- Agrega la referencia a Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-        body {
-            background-color: #343a40;
-            color: white;
-        }
-
-        .register-container {
-            margin-top: 5%;
-        }
-    </style>
-</head>
-<body>
+<body class="body-cuenta">
     <div class="container register-container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-sm-12">
@@ -47,7 +31,7 @@
                             <button type="submit" class="btn btn-dark btn-block">Registrarse</button>
                         </form>
                         <div class="text-center mt-3">
-                            <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión aquí</a></p>
+                            <p>¿Ya tienes una cuenta? <a href="{{ url_for('cuenta.login') }}">Inicia sesión aquí</a></p>
                         </div>
                     </div>
                 </div>
@@ -60,7 +44,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
-</html>
+
 
 
 
