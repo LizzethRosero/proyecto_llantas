@@ -6,6 +6,7 @@ from .cuenta import cuenta
 from .errores import errores
 
 app = Flask(__name__)
+app.secret_key="1234"
 app.config.from_pyfile('config/configuracion.cfg')
 app.register_blueprint(catalogo)
 app.register_blueprint(inicio)
