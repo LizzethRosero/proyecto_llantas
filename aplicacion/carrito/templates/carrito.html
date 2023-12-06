@@ -2,34 +2,29 @@
 {% block title %} Carrito {% endblock %}
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito de Compras</title>
-    <!-- Agrega la referencia a Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</head>
-<body>
 
+    
 <div class="container mt-5">
     <h2>Productos</h2>
     <div class="row">
-        <div class="col-md-4">
+        {% for producto in productos %}
+        <div class="col-sm-4 mb-3 mb-sm-3">
             <div class="card">
-                <img src="{{ url_for('static', filename='img/llanta1.jpg') }}" alt="Llanta 1">
+                <img src="{{ url_for('static', filename='img/'+ producto[5]) }}" alt="Llanta 1">
                 <div class="card-body">
-                    <h5 class="card-title">Producto 1</h5>
-                    <p class="card-text">$100.000</p>
-                    <button class="btn btn-primary add-to-cart" data-price="100.000" data-product="Producto 1">Agregar al Carrito</button>
+                    <h5 class="card-title">{{producto[1]}}</h5>
+                    <h5 class="card-title">{{producto[2]}}</h5>
+                    <p class="card-text">{{producto[3]}}</p>
+                    <button class="btn btn-primary add-to-cart" data-price="{{producto[3]}}" data-product="{{producto[1]}} {{producto[2]}}">Agregar al Carrito</button>
                 </div>
             </div>
         </div>
-        <!-- Puedes agregar más productos aquí -->
+
+        {% endfor %}
     </div>
 
     <h2 class="mt-5">Carrito de Compras</h2>
@@ -70,13 +65,13 @@
                 for (var i = 0; i < cart.length; i++) {
                     var item = cart[i];
                     cartList.append("<li class='list-group-item'>" + item.product +
-                        " - $" + item.price.toFixed(3) +
+                        " - $" + item.price.toFixed(0) +
                         " <button class='btn btn-danger btn-sm remove-from-cart' data-index='" + i + "'>Eliminar</button></li>");
                     total += item.price;
                 }
             }
 
-            totalElement.text(total.toFixed(3));
+            totalElement.text(total.toFixed(0));
         }
     });
 </script>

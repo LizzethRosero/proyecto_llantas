@@ -7,15 +7,15 @@ def create_tables():
 
     # Construir la ruta absoluta al archivo de la base de datos
     db_path = os.path.join(script_dir, 'proyectollantas.db')
-    print("esta es la ruta",script_dir)
-    print("esta es la ruta",db_path)
+    print("Esta es la ruta", script_dir)
+    print("Esta es la ruta", db_path)
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
     # Sentencias SQL para crear las tablas si no existen
     sentencias_sql = """
-        CREATE TABLE IF NOT EXISTS Usuario (
+        CREATE TABLE IF NOT EXISTS User (
             id INTEGER PRIMARY KEY,
             nom_usuario TEXT UNIQUE NOT NULL,
             correo TEXT UNIQUE NOT NULL,
@@ -37,8 +37,6 @@ def create_tables():
             marca TEXT NOT NULL
         );
 
-
-
         INSERT INTO Productos(marca, medida, costo, descripcion, imagen) VALUES
             ('MICHELIN','205/55 R16', 530.000, 'Tecnologia llanta de alto desempeño, y con gran rendimiento en kilometraje.','catalogo3.PNG')
         ;
@@ -53,6 +51,6 @@ def create_tables():
     finally:
         conn.close()
 
-if __name__== '__main__':
+if __name__ == '__main__':
     print("MAINNNNN")
     create_tables()
