@@ -5,7 +5,7 @@
 
 <div class="row justify-content-center, mx-auto p-2" style="width: 1200px;">
     {% for producto in productos %}
-    <!-- recorre la lista de productos asignado en rutas y se accede a los atride cada producto mediant posiciones -->
+    <!-- recorre la lista de productos asignado en rutas -->
     <div class="col-sm-4 mb-3 mb-sm-3">
         <div class="card d-flex flex-column h-100">
             <img src="{{ url_for('static', filename='img/'+ producto[5]) }}" class="card-img-top" alt="...">

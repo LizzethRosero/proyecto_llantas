@@ -14,8 +14,10 @@
                     </div>
                     <div class="card-body">
                         <form action="{{url_for('cuenta.login')}}" method="POST" novalidate>
+                            <!-- seguridad de datos -->
                             {{ form.csrf_token }}
                             <div class="form-group">
+                            <!-- muestra cada datos de entrada -->
                             {{form.usuariologin.label()}} {{form.usuariologin(class="form-control", placeholder="Ingrese su usuario")}}
                             </div>
                             <!-- validacion de errores -->
@@ -34,6 +36,7 @@
                             {{ form.contraseñalogin.errors[0] }}
                             </div>
                             {% endif %}
+                            <!-- boton envie el formulario -->
                             {{form.submitlogin(class="btn btn-dark btn-block")}}
                         </form>
                         <div class="text-center mt-3">
