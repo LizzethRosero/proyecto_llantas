@@ -5,6 +5,7 @@ from aplicacion.database.consultasproductos import obtenerproductos #se importa 
 @catalogo.route('/catalogo')
 def catalogo():
    #creacion de variable
-   productos=obtenerproductos()
-   print(productos)
-   return render_template('catalogo.html', productos=productos)# se envia el listado de productos q se obtiene d ela consulta al template
+      productos=obtenerproductos()
+      print(productos)
+      return render_template('catalogo.html', productos=productos)# se envia el listado de productos q se obtiene d ela consulta al template
+   

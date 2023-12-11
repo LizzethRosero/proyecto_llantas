@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-" >
+  <nav class="navbar navbar-expand-lg " style="background-color: rgba(3, 9, 39, 0.7);">
     <div class="container-fluid">
       <a class="navbar-brand" href="{{ url_for('inicio.inicio') }}">
         <img src="{{url_for('static', filename='img/logo.png' )}}" alt="icon" width="50" height="50">
@@ -34,28 +34,15 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('inicio.inicio') }}">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ url_for('catalogo.catalogo') }}">Catalogo</a>
           </li>
-          <!-- <li class="nav-item">
-            <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Catalogo
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-          </li> -->
           <li class="nav-item">
-            <a class="btn btn-outline-primary nav-link" href="{{ url_for('cuenta.login') }}" style="width: 150px;">
+            <a class="btn btn-outline-secondary nav-link" href="{{ url_for('cuenta.login') }}" style="width: 150px;">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-person-circle" viewBox="0 0 16 16">
                 <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
@@ -69,13 +56,13 @@
         </ul>
       </div>
 
+<!-- carrito -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-         <!--  <a class="btn btn-outline-secondary" href="{{ url_for('carrito.carrito') }}">
-            <img src="{{url_for('static', filename='img/cart.png' )}}" fill="currentColor" class="bi bi-person-circle"
+           <a class="btn btn-outline-secondary" href="{{ url_for('carrito.carrito') }}">
+            <img src="{{url_for('static', filename='img/carrito.png' )}}" fill="currentColor" class="bi bi-person-circle"
               alt="icon" width="50" height="50">
-            Carrito
-          </a> -->
+          </a>
         </li>
       </ul>
     </div>
@@ -85,7 +72,7 @@
   {% block content %}{% endblock %}
 
   <!-- Footer -->
-  <footer class="footer mt-5">
+  <footer class="footer mt-5" style="background-color: rgba(3, 9, 39, 0.7);">
     <div class="container">
       <div class="row">
         <div class="col-md-4">

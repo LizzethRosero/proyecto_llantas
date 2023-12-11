@@ -3,10 +3,10 @@
 
 {% block content %}
 <div class="body">
-    <div >
+    <div>
 
         <!-- CAROUSEL -->
-        <div  class="carousel slide w-90 " data-bs-ride="carousel">
+        <div class="carousel slide w-90 " data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                     aria-current="true" aria-label="Slide 1"></button>
@@ -21,21 +21,21 @@
                 <div class="carousel-item active" data-bs-interval="8000">
                     <img src="{{ url_for('static', filename='img/opc1.jpg') }}" class="d-block w-100 " alt="modelo1">
                     <div class="carousel-caption d-none d-md-block">
-                        
-                        
+
+
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="8000">
                     <img src="{{ url_for('static', filename='img/voo1.png') }}" class="d-block w-100" alt="modelo2">
                     <div class="carousel-caption d-none d-md-block">
-                        
-                        
+
+
                     </div>
                 </div>
                 <div class="carousel-item" data-bs-interval="8000">
                     <img src="{{ url_for('static', filename='img/tipos.jpg') }}" class="d-block w-100" alt="modelo3">
                     <div class="carousel-caption d-none d-md-block">
-                        
+
                     </div>
                 </div>
             </div>
@@ -51,30 +51,51 @@
             </button>
         </div>
 
-
-        <div class="jumbotron">
-            <h1 class="display-4">Bienvenido a LlantasExpress</h1>
-            <p class="lead">Descubre las mejores opciones de llantas para tu vehículo.</p>
-            <hr class="my-4">
-            <p>En nuestro compromiso por brindarte la mejor calidad y servicio, contamos con un amplio catálogo de
-                llantas de las marcas más reconocidas.</p>
-            <p>Explora nuestras ofertas y encuentra la llanta perfecta para tu conducción.</p>
-            <a class="btn btn-primary btn-lg color" href="{{ url_for('catalogo.catalogo') }}" role="button">Ver Catálogo</a>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h2>¿Quiénes Somos?</h2>
-                <p>Somos apasionados por los vehículos y la seguridad en la carretera. Nuestra misión es proporcionar a
-                    nuestros clientes las mejores llantas para garantizar un viaje seguro y cómodo.</p>
+<br>
+<div class="jumbotron mx-3" style="background-color: #000000; color: #ffffff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+    <h1 class="display-4">¡Bienvenido a LlantasExpress!</h1>
+    <p class="lead">Descubre las mejores opciones de llantas para tu vehículo.</p>
+    <hr class="my-4">
+    <p>En nuestro compromiso por brindarte la mejor calidad y servicio, contamos con un amplio catálogo de llantas de las marcas más reconocidas.</p>
+    <p>Explora nuestras ofertas y encuentra la llanta perfecta para tu conducción.</p>
+    <a class="btn btn-primary btn-lg color" href="{{ url_for('catalogo.catalogo') }}" role="button">Ver Catálogo</a>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title">¿Quiénes Somos?</h2>
+                        <p class="card-text text-justify">Somos apasionados por los vehículos y la seguridad en la carretera. Nuestra misión es proporcionar a nuestros clientes las mejores llantas para garantizar un viaje seguro y cómodo.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='img/personal.png' )}}" alt="Imagen" class="img-fluid">
+                </div>
             </div>
-            <div class="col-md-6">
-                <h2>Nuestros Servicios</h2>
-                <p>Ofrecemos una amplia variedad de llantas para automóviles, camiones y SUVs. Además, brindamos
-                    servicios de instalación y asesoramiento personalizado para asegurarnos de que elijas la llanta
-                    adecuada para tus necesidades.</p>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title">Nuestros Servicios</h2>
+                        <p class="card-text text-justify">Ofrecemos una amplia variedad de llantas para automóviles, camiones y SUVs. Además, brindamos servicios de instalación y asesoramiento personalizado para asegurarnos de que elijas la llanta adecuada para tus necesidades.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{url_for('static', filename='img/servicios.png' )}}" alt="Otra Imagen" class="img-fluid">
+                </div>
             </div>
         </div>
+    </div>
+</div>
+
+
+
 
         <div class="services">
             <h2>Nuestros Productos</h2>

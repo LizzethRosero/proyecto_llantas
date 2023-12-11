@@ -48,5 +48,12 @@ h2 {
     max-width: 100%;
     height: auto;
 }
+.nav-link{
+    color: white;
+}
 
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: white;
+    font-weight: bold;
+}
 
