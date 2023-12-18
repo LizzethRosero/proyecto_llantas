@@ -50,10 +50,25 @@ h2 {
 }
 .nav-link{
     color: white;
+   
 }
 
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
     color: white;
     font-weight: bold;
+    
 }
+.navbar-nav a {
+    /* font-family: 'TuTipoDeLetra', sans-serif; Reemplaza 'TuTipoDeLetra' con el tipo de letra que prefieras */
+    font-family: 'PT Serif', serif;
+}
+.navbar-nav .nav-item {
+    border-right: 1px solid rgba(255, 255, 255, 0.5);  /* Cambia 'white' al color que desees para la línea vertical */
+}
+
+/* Para evitar que el último elemento tenga un borde derecho */
+.navbar-nav .nav-item:last-child {
+    border-right: none;
+}
+
 
