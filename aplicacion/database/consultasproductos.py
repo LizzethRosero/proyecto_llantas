@@ -2,9 +2,6 @@
 import sqlite3
 from flask import current_app, session, request, flash, redirect, url_for
 
-
-
-
 def obtenerproductos ():
     ruta=current_app.config['DATABASE_URI'].replace('sqlite:///','') # encontrol la url de la bd,replace quita sqlite(en que carpet se encutra la bd)
     conexion=sqlite3.connect(ruta)
@@ -20,42 +17,24 @@ def obtenerproductos ():
     #retornar productos
     return productos
 
+def obtenerproducto (id_producto):
+    ruta=current_app.config['DATABASE_URI'].replace('sqlite:///','') # encontrol la url de la bd,replace quita sqlite(en que carpet se encutra la bd)
+    conexion=sqlite3.connect(ruta)
 
-
-def registrar_usuario(nom_usuario, correo, contraseña):
-    ruta = current_app.config['DATABASE_URI'].replace('sqlite:///', '')
-    conexion = sqlite3.connect(ruta)
-    cursor = conexion.cursor()
-
-    # Hash de la contraseña antes de almacenarla en la base de datos
-
-    try:
-        cursor.execute('INSERT INTO usuarios (nom_usuario, correo, contraseña) VALUES (?, ?, ?)',
-                       (nom_usuario, correo, contraseña))
-        conexion.commit()
-        flash('¡Registro exitoso! Por favor, inicia sesión.')
-    except sqlite3.IntegrityError:
-        flash('El nombre de usuario o correo ya está en uso. Por favor, elige otros.')
-
+    cursor=conexion.cursor()#para relizar consultas mediante un cursor
+    cursor.execute("""SELECT Productos.id, Marca.marca, Productos.medida, Productos.costo, Productos.descripcion, Productos.imagen
+        FROM Productos
+        INNER JOIN Marca ON Productos.marca = Marca.id where Productos.id=?
+        """,(id_producto,)) 
+    productos=cursor.fetchone()
     conexion.close()
 
-def autenticar_usuario(nom_usuario, contraseña):
-    ruta = current_app.config['DATABASE_URI'].replace('sqlite:///', '')
-    conexion = sqlite3.connect(ruta)
-    cursor = conexion.cursor()
+    #retornar productos
+    return productos
 
-    cursor.execute('SELECT * FROM usuarios WHERE nom_usuario = ?', (nom_usuario,))
-    usuario = cursor.fetchone()
-    conexion.close()
 
-    if usuario (usuario[3], contraseña):
-        # Usuario autenticado correctamente
-        session['usuario_id'] = usuario[0]
-        flash('¡Inicio de sesión exitoso!')
-        return True
-    else:
-        flash('Nombre de usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.')
-        return False
+
+
 
 
 

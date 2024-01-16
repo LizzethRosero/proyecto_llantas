@@ -1,32 +1,35 @@
 import os
-from flask import render_template, request, url_for, redirect, flash
+from flask import render_template, request, url_for, redirect, flash, session
 import sqlite3
 from . import cuenta
 from aplicacion.cuenta.forms import Formulariologin, Formularioregistro
+from aplicacion.database.consultasusuarios import consultar_usuario
 
 @cuenta.route('/login', methods=["GET", "POST"])
 def login():
+    if "username" in session:
+        return  redirect(url_for("inicio.inicio"))
+    
     form = Formulariologin(request.form)
 
     if form.validate_on_submit():
         username = form.usuariologin.data
         password = form.contraseñalogin.data
 
-        print("Intentando acceder a la base de datos desde la ruta:", os.getcwd())
+        usuario_existe=consultar_usuario(username)
+        print(f"Intentando acceder a la base de datos  con usuario: {usuario_existe} ")
 
-        conn = sqlite3.connect('aplicacion/database/proyectollantas.db')
-        cursor = conn.cursor()
-
-        # Buscar el usuario en la base de datos
-        cursor.execute('SELECT * FROM User WHERE nom_usuario = ?', (username,))
-        user = cursor.fetchone()
-
-        if user and user[3] == password:  # Comparar la contraseña en texto plano
-            # Iniciar sesión (puedes usar Flask-Login para una solución más avanzada)
-            flash('Inicio de sesión exitoso', 'success')
-            return redirect(url_for("carrito.carrito"))
+        if usuario_existe:
+            print("Usuario existe")
+            if usuario_existe[3] == password:
+                flash('Inicio de sesión exitoso', 'success')
+                session["username"]=username
+                return redirect(url_for("carrito.carrito"))
+            else:
+                #contraseña incorrecta 
+                flash("La contraseña no es correcta", "danger")
         else:
-            flash('Usuario o contraseña incorrectos', 'danger')
+            flash('Usuario no esta registrado', 'danger')
 
     return render_template('cuentalog.html', form=form)
 
@@ -56,3 +59,10 @@ def registro():
             return redirect(url_for("cuenta.login"))
 
     return render_template('registro.html', form=form)
+
+@cuenta.route('/cerrar_sesion')
+def cerrar_sesion():
+    if "username" in session:
+        session.pop("username",None)
+    return redirect(url_for("cuenta.login"))   
+

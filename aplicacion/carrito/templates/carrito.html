@@ -2,9 +2,20 @@
 {% block title %} Carrito {% endblock %}
 {% block content %}
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<ul>
+{% for category,message in messages %}
+<div class="alert alert-{{category}}">
+    <li>{{message}}</li>
+</div>
+{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 <div class="container mt-5">
-    <h2>Productos</h2>
+    <h2>Carrito</h2>
     <div class="row">
         {% for producto in productos %}
         <div class="col-sm-4 mb-3 mb-sm-3">
@@ -14,7 +25,11 @@
                     <h5 class="card-title">{{producto[1]}}</h5>
                     <h5 class="card-title">{{producto[2]}}</h5>
                     <p class="card-text">{{producto[3]}}</p>
-                    <button class="btn btn-primary add-to-cart" data-price="{{producto[3]}}" data-product="{{producto[1]}} {{producto[2]}}">Agregar al Carrito</button>
+                    <form action="{{url_for('carrito.agregar_producto',id_producto=producto[0])}}" method="post">
+                        cantidad <input type="number" name="cantidad" id="cantidad">
+                        <button class="btn btn-primary add-to-cart" type="submit">Agregar al Carrito</button>
+
+                    </form>
                 </div>
             </div>
         </div>
@@ -77,3 +92,9 @@
 
 
 {% endblock %}
+
+ 
+
+
+
+
