@@ -24,7 +24,7 @@ def login():
             if usuario_existe[3] == password:
                 flash('Inicio de sesión exitoso', 'success')
                 session["username"]=username
-                return redirect(url_for("carrito.carrito"))
+                return redirect(url_for("carrito.productos"))
             else:
                 #contraseña incorrecta 
                 flash("La contraseña no es correcta", "danger")
