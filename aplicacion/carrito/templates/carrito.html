@@ -134,7 +134,7 @@
                     <h5 class="card-title">Resumen de la Compra</h5>
                     <p class="card-text">Total: ${{carrito_compras.valor_total}}</p>{% if
                     carrito_compras.cantidad_productos > 0 %}
-                    <a href="#" class="btn btn-primary">Proceder al Pago </a>{% endif %}
+                    <a href="{{url_for('carrito.comprar')}}" class="btn btn-primary">Proceder al Pago </a>{% endif %}
                 </div>
             </div>
         </div>

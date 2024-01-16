@@ -1,46 +1,55 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="{{url_for('cuenta.static', filename='styles.css')}}">
-{% extends "base.html" %}
-{% block title %} Login {% endblock %}
-{% block content %}
 
+{% extends "base.html" %}
+{% block title %} Registro de compra {% endblock %}
+
+{% block content %}
+<br>
 <body class="body-cuenta">
-    <div class="container login-container">
+    <div class="container register-container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header text-center bg-dark text-white">
-                        <h3>Mi Cuenta Personal</h3>
+                        <h3>Registra información para la compra</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{url_for('cuenta.login')}}" method="POST" novalidate>
-                            <!-- seguridad de datos -->
+                        <form method="POST" action="">
                             {{ form.csrf_token }}
                             <div class="form-group">
-                            <!-- muestra cada datos de entrada -->
-                            {{form.usuariologin.label()}} {{form.usuariologin(class="form-control", placeholder="Ingrese su usuario")}}
+                            {{form.celular.label()}} {{form.celular(class="form-control", placeholder="Ingrese su celular")}}
                             </div>
                             <!-- validacion de errores -->
-                            {% if form.usuariologin.errors %}
+                            {% if form.celular.errors %}
                             <div class="alert alert-danger">
-                            {{ form.usuariologin.errors[0] }}
+                            {{ form.celular.errors[0] }}
+                            </div>
+                            {% endif %}
+
+                            <div class="form-group">
+                            {{form.direccion.label()}} {{form.direccion(class="form-control", placeholder="Ingrese su dirección")}}
+                            </div>
+                            <!-- validacion de errores -->
+                            {% if form.direccion.errors %}
+                            <div class="alert alert-danger">
+                            {{ form.direccion.errors[0] }}
                             </div>
                             {% endif %}
                             
                             <div class="form-group">
-                            {{form.contraseñalogin.label()}} {{form.contraseñalogin(class="form-control", placeholder="Ingrese su contraseña")}}
+                            {{form.pago.label()}} {{form.pago(class="form-control", placeholder="Ingrese su método de pago")}}
                             </div>
                             <!-- validacion de errores -->
-                            {% if form.contraseñalogin.errors %}
+                            {% if form.pago.errors %}
                             <div class="alert alert-danger">
-                            {{ form.contraseñalogin.errors[0] }}
+                            {{ form.pago.errors[0] }}
                             </div>
                             {% endif %}
-                            <!-- boton envie el formulario -->
-                            {{form.submitlogin(class="btn btn-dark btn-block")}}
+                            {{form.submit(class="btn btn-dark btn-block")}}
                         </form>
                         <br>
-                            {% with messages=get_flashed_messages(with_categories=true) %}
+                        {% with messages=get_flashed_messages(with_categories=true) %}
                             {% if messages %}
                             <ul>
                             {% for category,message in messages %}
@@ -51,9 +60,7 @@
                         </ul>
                             {% endif %}
                             {% endwith %}
-                        <div class="text-center mt-3">
-                            <p>No estás registrado? <a href="{{ url_for('cuenta.registro') }}">Regístrate aquí</a></p>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -66,7 +73,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
+
+
 <br>
 {% endblock %}
-
-

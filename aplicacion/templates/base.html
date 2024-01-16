@@ -93,7 +93,20 @@
           </li>
         </ul>
       </div>
+      {% if "username" in session %}
+      <div style="padding: 0px 5px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle text-white"
+          viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z">
+          </path>
+        </svg>
+        <span class="text-white">{{session["username"]}}</span>
+      </div>
 
+
+      {% endif %}
       <!-- carrito -->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -115,7 +128,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header" style="background-color: rgba(3, 9, 39, 0.7); color: aliceblue;">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">¿Deseas cerrar sesión?</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">¿Deseas cerrar sesión {{session["username"]}}?</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-footer">

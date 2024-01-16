@@ -1,4 +1,5 @@
 from flask import render_template, session, redirect, url_for,request, flash
+from aplicacion.carrito.forms import FormularioCompra
 
 from aplicacion.database.consultasusuarios import consultar_usuario
 from . import carrito
@@ -106,4 +107,19 @@ def eliminar_producto(id_producto_carrito):
    carrito_compras.eliminar_producto(id_producto_carrito)
    return redirect(url_for("carrito.productos"))
 
-   
+@carrito.route("/comprar",methods=["GET","POST"])
+def comprar():
+   if "username" not in session:
+      return redirect(url_for("cuenta.login"))
+   form = FormularioCompra(request.form)
+
+   if form.validate_on_submit():
+      celular = form.celular.data
+      direccion = form.direccion.data
+      pago = form.pago.data
+      print(celular,direccion,pago)
+
+
+   usuario=consultar_usuario(session["username"])
+   carrito_compras.id_usuario=usuario[0]   
+   return render_template('comprar.html', carrito_compras=carrito_compras, form=form)
