@@ -4,6 +4,7 @@ import sqlite3
 from . import cuenta
 from aplicacion.cuenta.forms import Formulariologin, Formularioregistro
 from aplicacion.database.consultasusuarios import consultar_usuario
+from flask_babel import _
 
 @cuenta.route('/login', methods=["GET", "POST"])
 def login():
@@ -22,14 +23,14 @@ def login():
         if usuario_existe:
             print("Usuario existe")
             if usuario_existe[3] == password:
-                flash('Inicio de sesión exitoso', 'success')
+                flash(_('Inicio de sesión exitoso'), 'success')
                 session["username"]=username
                 return redirect(url_for("carrito.productos"))
             else:
                 #contraseña incorrecta 
-                flash("La contraseña no es correcta", "danger")
+                flash(_("La contraseña no es correcta"), "danger")
         else:
-            flash('Usuario no esta registrado', 'danger')
+            flash(_('Usuario no esta registrado'), 'danger')
 
     return render_template('cuentalog.html', form=form)
 
@@ -50,12 +51,12 @@ def registro():
         existing_user = cursor.fetchone()
 
         if existing_user:
-            flash('Usuario o correo electrónico ya registrados', 'danger')
+            flash(_('Usuario o correo electrónico ya registrados'), 'danger')
         else:
             # Insertar la contraseña en texto plano en la base de datos
             cursor.execute('INSERT INTO User (nom_usuario, correo, contraseña) VALUES (?, ?, ?)', (usuarioreg, email, password))
             conn.commit()
-            flash('Registro exitoso. ¡Ahora puedes iniciar sesión!', 'success')
+            flash(_('Registro exitoso. ¡Ahora puedes iniciar sesión!'), 'success')
             return redirect(url_for("cuenta.login"))
 
     return render_template('registro.html', form=form)

@@ -5,17 +5,19 @@ from .inicio import inicio
 from .carrito import carrito
 from .cuenta import cuenta
 from .errores import errores
+from flask_babel import _
 
 app = Flask(__name__)
 app.secret_key="1234"
 app.config.from_pyfile('config/configuracion.cfg')
+
 babel = Babel(app)
 
-app.config['LANGUAGES'] = ['en', 'es']
+app.config['LANGUAGES'] = ['es', 'en']
 app.config['BABEL_DEFAULT_LOCALE'] = 'es'
 
 def get_locale():
-    return session.get('language', request.accept_languages.best_match(app.config['LANGUAGES']))
+    return session.get('idioma', request.accept_languages.best_match(app.config['LANGUAGES']))
 
 @app.route('/cambiar_idioma/<idioma>')
 def cambiar_idioma(idioma):

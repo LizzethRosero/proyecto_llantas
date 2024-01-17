@@ -10,7 +10,7 @@
             <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header text-center bg-dark text-white">
-                        <h3>Mi Cuenta Personal</h3>
+                        <h3>{{_('Mi Cuenta Personal')}}</h3>
                     </div>
                     <div class="card-body">
                         <form action="{{url_for('cuenta.login')}}" method="POST" novalidate>
@@ -18,7 +18,7 @@
                             {{ form.csrf_token }}
                             <div class="form-group">
                             <!-- muestra cada datos de entrada -->
-                            {{form.usuariologin.label()}} {{form.usuariologin(class="form-control", placeholder="Ingrese su usuario")}}
+                            {{form.usuariologin.label()}} {{form.usuariologin(class="form-control", placeholder=_("Ingrese su usuario"))}}
                             </div>
                             <!-- validacion de errores -->
                             {% if form.usuariologin.errors %}
@@ -28,7 +28,7 @@
                             {% endif %}
                             
                             <div class="form-group">
-                            {{form.contraseñalogin.label()}} {{form.contraseñalogin(class="form-control", placeholder="Ingrese su contraseña")}}
+                            {{form.contraseñalogin.label()}} {{form.contraseñalogin(class="form-control", placeholder=_("Ingrese su contraseña"))}}
                             </div>
                             <!-- validacion de errores -->
                             {% if form.contraseñalogin.errors %}
@@ -52,7 +52,7 @@
                             {% endif %}
                             {% endwith %}
                         <div class="text-center mt-3">
-                            <p>No estás registrado? <a href="{{ url_for('cuenta.registro') }}">Regístrate aquí</a></p>
+                            <p>{{_('¿No estás registrado')}}? <a href="{{ url_for('cuenta.registro') }}">{{_('Regístrate aquí')}}</a></p>
                         </div>
                     </div>
                 </div>

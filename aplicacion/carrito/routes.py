@@ -6,6 +6,8 @@ from . import carrito
 from aplicacion.database.consultasproductos import obtenerproductos,obtenerproducto
 from aplicacion.carrito.carrito_compras import carrito_compras, Producto_Carrito, registrar_compra, registrar_producto_compra
 from flask_paginate import Pagination, get_page_args
+from flask_babel import _
+
 
 @carrito.route('/productos')
 def productos():
@@ -60,7 +62,7 @@ def agregar_producto(id_producto):
             # flash("Producto Agregado","success")
             return redirect(url_for("carrito.productos"))
          else:
-            flash("Error la cantidad no puede ser menor o igual a 0", "danger")
+            flash(_("Error la cantidad no puede ser menor o igual a 0"), "danger")
             return redirect(url_for("carrito.productos"))
       except Exception as e:
          flash(f"Error de cantidad: Debe ser un número mayor a cero {e}","danger")
@@ -90,7 +92,7 @@ def modificar_producto(id_producto_carrito):
             # flash("Producto Agregado","success")
             return redirect(url_for("carrito.productos"))
          else:
-            flash("Error la cantidad no puede ser menor o igual a 0", "danger")
+            flash(_("Error la cantidad no puede ser menor o igual a 0"), "danger")
             return redirect(url_for("carrito.productos"))
       except Exception as e:
          flash(f"Error de cantidad: Debe ser un número mayor a cero {e}","danger")
@@ -105,7 +107,7 @@ def eliminar_producto(id_producto_carrito):
    usuario=consultar_usuario(session["username"])
    carrito_compras.id_usuario=usuario[0]   
    carrito_compras.eliminar_producto(id_producto_carrito)
-   flash("Se eliminó el producto del carrito","success")
+   flash(_("Se eliminó el producto del carrito"),"success")
    return redirect(url_for("carrito.productos"))
 
 @carrito.route("/comprar",methods=["GET","POST"])
@@ -136,9 +138,9 @@ def comprar():
          carrito_compras.cargar_carrito()
          if carrito_compras.cantidad_productos==0:
             # Ya se registró exitosamente toda la compra
-            flash("Se ha registrado su compra exitosamente","success")
+            flash(_("Se ha registrado su compra exitosamente"),"success")
             return redirect(url_for("carrito.productos"))
       else:
          # Ha ocurrido un error en registrar la compra en general   #
-         flash("Ha ocurrido un error","warning") 
+         flash(_("Ha ocurrido un error"),"warning") 
    return render_template('comprar.html', carrito_compras=carrito_compras, form=form)

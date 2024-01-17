@@ -4,6 +4,8 @@ from flask import current_app, flash, session
 from aplicacion.database.consultasproductos import obtenerproducto
 from aplicacion.database.consultasusuarios import consultar_usuario
 from datetime import datetime
+from flask_babel import _
+
 
 class Producto_Carrito:
     def __init__(self,id_usuario,id_producto,cantidad,precio_cantidad):
@@ -37,11 +39,11 @@ class Carrito:
             nueva_cantidad=cantidad_antes+producto.cantidad
             nueva_precio_cantidad=precio_cantidad_antes+producto.precio_cantidad
             actualizar_producto_carrito(nueva_cantidad,nueva_precio_cantidad,id_producto_carrito)
-            flash("Se actualizó la cantidad del producto","success")
+            flash(_("Se actualizó la cantidad del producto"),"success")
             
         else:
             agregar_producto_carrito(producto)
-            flash("Se agregó el producto al carrito","success")
+            flash(_("Se agregó el producto al carrito"),"success")
 
     def modificar_producto(self,id_producto_carrito,id_usuario,cantidad):
         producto_existe=obtener_producto_carrito_por_id(id_producto_carrito)
@@ -49,7 +51,7 @@ class Carrito:
             precio_unidad=producto_existe[4]
             precio_cantidad=precio_unidad*cantidad
             actualizar_producto_carrito(cantidad,precio_cantidad,id_producto_carrito)
-            flash("Se modificó el producto del carrito","success")
+            flash(_("Se modificó el producto del carrito"),"success")
         else:
             print("No existe el producto")
 

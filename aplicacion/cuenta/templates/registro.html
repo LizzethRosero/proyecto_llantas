@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('cuenta.static', filename='styles.css')}}">
 
 {% extends "base.html" %}
-{% block title %} Registro {% endblock %}
+{% block title %} {{_('Registro')}} {% endblock %}
 
 {% block content %}
 <br>
@@ -12,13 +12,13 @@
             <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header text-center bg-dark text-white">
-                        <h3>Registrate</h3>
+                        <h3>{{_('Registrate')}}</h3>
                     </div>
                     <div class="card-body">
                         <form method="POST">
                             {{ form.csrf_token }}
                             <div class="form-group">
-                            {{form.usuarioreg.label()}} {{form.usuarioreg(class="form-control", placeholder="Ingrese su usuario")}}
+                            {{form.usuarioreg.label()}} {{form.usuarioreg(class="form-control", placeholder=_("Ingrese su usuario"))}}
                             </div>
                             <!-- validacion de errores -->
                             {% if form.usuarioreg.errors %}
@@ -28,7 +28,7 @@
                             {% endif %}
 
                             <div class="form-group">
-                            {{form.correoreg.label()}} {{form.correoreg(class="form-control", placeholder="Ingrese su correo electrónico")}}
+                            {{form.correoreg.label()}} {{form.correoreg(class="form-control", placeholder=_("Ingrese su correo electrónico"))}}
                             </div>
                             <!-- validacion de errores -->
                             {% if form.correoreg.errors %}
@@ -38,7 +38,7 @@
                             {% endif %}
                             
                             <div class="form-group">
-                            {{form.contraseñareg.label()}} {{form.contraseñareg(class="form-control", placeholder="Ingrese su contraseña")}}
+                            {{form.contraseñareg.label()}} {{form.contraseñareg(class="form-control", placeholder=_("Ingrese su contraseña"))}}
                             </div>
                             <!-- validacion de errores -->
                             {% if form.contraseñareg.errors %}
@@ -61,7 +61,7 @@
                             {% endif %}
                             {% endwith %}
                         <div class="text-center mt-3">
-                            <p>¿Ya tienes una cuenta? <a href="{{ url_for('cuenta.login') }}">Inicia sesión aquí</a></p>
+                            <p>{{_('¿Ya tienes una cuenta')}}? <a href="{{ url_for('cuenta.login') }}">{{_('Inicia sesión aquí')}}</a></p>
                         </div>
                     </div>
                 </div>
