@@ -1,12 +1,14 @@
-from flask import render_template, session, redirect, url_for,request, flash
+from flask import current_app, render_template, session, redirect, url_for,request, flash
 from aplicacion.carrito.forms import FormularioCompra
 
 from aplicacion.database.consultasusuarios import consultar_usuario
 from . import carrito
 from aplicacion.database.consultasproductos import obtenerproductos,obtenerproducto
-from aplicacion.carrito.carrito_compras import carrito_compras, Producto_Carrito, registrar_compra, registrar_producto_compra
+from aplicacion.carrito.carrito_compras import carrito_compras, Producto_Carrito, consultar_compra_id, registrar_compra, registrar_producto_compra
 from flask_paginate import Pagination, get_page_args
 from flask_babel import _
+from flask_mail import Mail, Message
+from aplicacion.config.email import mail
 
 
 @carrito.route('/productos')
@@ -118,7 +120,9 @@ def comprar():
    form = FormularioCompra(request.form)
    usuario=consultar_usuario(session["username"])
    carrito_compras.id_usuario=usuario[0]   
+   carrito_compras.cargar_carrito()
    id_usuario=usuario[0]   
+   email=usuario[2]
    # print(carrito_compras)
 
    if form.validate_on_submit():
@@ -130,15 +134,26 @@ def comprar():
       # Primero registramos la compra en general
       id_compra=registrar_compra(id_usuario,carrito_compras.valor_total,celular,direccion,pago)
       if id_compra:
+         compra=consultar_compra_id(id_compra)
+         copia_carrito_compras=carrito_compras
+          # Para enviar un corrreo de registro exitoso
+         msg = Message(_('Gracias por comprar en Llantas Express!!'),
+                     sender=current_app.config['MAIL_USERNAME'],
+                     recipients=[email])
+         # print(f"Mensaje... {msg}")
+         msg.html = render_template('email_compra.html', username=email,carrito_compras=copia_carrito_compras,compra=compra)
+         mail.send(msg)
          # Se logró registrar la compra, debemos registrar cada producto del carrito a la comparra
          for producto in carrito_compras.productos:
             if registrar_producto_compra(id_compra,producto[1],producto[7],producto[8]):
                # Se logró registarr el producto del carrito rn la compra, entonces se lo saca del carrito
+
                carrito_compras.eliminar_producto(producto[0])
          carrito_compras.cargar_carrito()
          if carrito_compras.cantidad_productos==0:
             # Ya se registró exitosamente toda la compra
             flash(_("Se ha registrado su compra exitosamente"),"success")
+
             return redirect(url_for("carrito.productos"))
       else:
          # Ha ocurrido un error en registrar la compra en general   #

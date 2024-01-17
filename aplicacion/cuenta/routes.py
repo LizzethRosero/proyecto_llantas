@@ -1,10 +1,13 @@
 import os
-from flask import render_template, request, url_for, redirect, flash, session
+from flask import current_app, render_template, request, url_for, redirect, flash, session
 import sqlite3
 from . import cuenta
 from aplicacion.cuenta.forms import Formulariologin, Formularioregistro
 from aplicacion.database.consultasusuarios import consultar_usuario
 from flask_babel import _
+from flask_mail import Mail,Message
+from aplicacion.config.email import mail
+
 
 @cuenta.route('/login', methods=["GET", "POST"])
 def login():
@@ -57,6 +60,15 @@ def registro():
             cursor.execute('INSERT INTO User (nom_usuario, correo, contraseña) VALUES (?, ?, ?)', (usuarioreg, email, password))
             conn.commit()
             flash(_('Registro exitoso. ¡Ahora puedes iniciar sesión!'), 'success')
+
+            # Para enviar un corrreo de registro exitoso
+            msg = Message(_('Te has registrado en nuestra plataforma de Llantas Express!'),
+                        sender=current_app.config['MAIL_USERNAME'],
+                        recipients=[email])
+            # print(f"Mensaje... {msg}")
+            msg.html = render_template('email.html', username=usuarioreg)
+            mail.send(msg)
+
             return redirect(url_for("cuenta.login"))
 
     return render_template('registro.html', form=form)

@@ -69,8 +69,9 @@ class Carrito:
     def __str__(self) -> str:
         # self.cargar_carrito()
         cadena="Carrito:"
-        for item in self.productos:
-            cadena+=f"\n- {item}"
+        if self.productos:
+            for item in self.productos:
+                cadena+=f"\n- {item}"
         return cadena
     
     def cargar_carrito(self):
@@ -246,6 +247,15 @@ def registrar_compra(id_usuario,precio,celular,direccion,pago):
     except Exception as e:
         flash(f"Error al insertar el producto en el carrito {e}")
         return None
+    
+def consultar_compra_id(id_compra):
+    ruta=current_app.config["DATABASE_URI"].replace('sqlite:///','')
+    conexion=sqlite3.connect(ruta)
+    cursor=conexion.cursor()
+    cursor.execute("SELECT * FROM Compras WHERE id=?",(id_compra,))
+    compra=cursor.fetchone()
+    conexion.close()
+    return compra
 
 def registrar_producto_compra(id_compra,id_producto,cantidad,precio_cantidad):
     try:
