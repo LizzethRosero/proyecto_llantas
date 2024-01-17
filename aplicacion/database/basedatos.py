@@ -42,6 +42,27 @@ def create_tables():
             FOREIGN KEY (id_producto) REFERENCES Productos(id)
         );
 
+        CREATE TABLE IF NOT EXISTS Compras (
+            id INTEGER PRIMARY KEY,
+            id_usuario INTEGER NOT NULL,
+            fecha TEXT NOT NULL,
+            precio REAL NOT NULL,
+            celular TEXT NOT NULL,
+            direccion TEXT NOT NULL,
+            pago TeXT NOT NULL,
+            FOREIGN KEY (id_usuario) REFERENCES User(id)
+        );
+
+        CREATE TABLE IF NOT EXISTS Productos_Compra (
+            id INTEGER PRIMARY KEY,
+            id_compra INTEGER NOT NULL,
+            id_producto INTEGER NOT NULL,
+            cantidad INTEGER NOT NULL,
+            precio_cantidad REAL NOT NULL,
+            FOREIGN KEY (id_compra) REFERENCES Compra(id),
+            FOREIGN KEY (id_producto) REFERENCES Productos(id)
+        );
+
 
         CREATE TABLE IF NOT EXISTS Marca (
             id INTEGER PRIMARY KEY,

@@ -3,6 +3,7 @@ import sqlite3
 from flask import current_app, flash, session
 from aplicacion.database.consultasproductos import obtenerproducto
 from aplicacion.database.consultasusuarios import consultar_usuario
+from datetime import datetime
 
 class Producto_Carrito:
     def __init__(self,id_usuario,id_producto,cantidad,precio_cantidad):
@@ -56,9 +57,12 @@ class Carrito:
         producto_existe=obtener_producto_carrito_por_id(id_producto_carrito)
         if producto_existe:
             eliminar_producto_carrito(id_producto_carrito)
-            flash("Se eliminó el producto del carrito","success")
+            
         else:
             print("No existe el producto")
+
+    
+
 
     def __str__(self) -> str:
         # self.cargar_carrito()
@@ -210,5 +214,50 @@ def eliminar_producto_carrito(id_producto_carrito):
         flash(f"Error al insertar el producto en el carrito {e}")
         return False
 
+def vaciar_carrito(id_usuario):
+    try:
+        ruta=current_app.config['DATABASE_URI'].replace('sqlite:///','') # encontrol la url de la bd,replace quita sqlite(en que carpet se encutra la bd)
+        conexion=sqlite3.connect(ruta)
+
+        cursor=conexion.cursor()#para relizar consultas mediante un cursor
+        cursor.execute("DELETE * FROM Productos_Carrito WHERE id_usuario=?",(id_usuario,))
+        conexion.commit()
+        conexion.close()
+        return True
+    except Exception as e:
+        flash(f"Error al insertar el producto en el carrito {e}")
+        return False
+
+def registrar_compra(id_usuario,precio,celular,direccion,pago):
+    try:
+        ruta=current_app.config['DATABASE_URI'].replace('sqlite:///','') # encontrol la url de la bd,replace quita sqlite(en que carpet se encutra la bd)
+        conexion=sqlite3.connect(ruta)
+
+        cursor=conexion.cursor()#para relizar consultas mediante un cursor
+        fecha=datetime.now()
+        cursor.execute("INSERT INTO Compras (id_usuario,fecha,precio,celular,direccion,pago) VALUES (?,?,?,?,?,?)",(id_usuario,fecha,precio,celular,direccion,pago,))
+        conexion.commit()
+        id_compra = cursor.lastrowid
+
+        conexion.close()
+        return id_compra
+    except Exception as e:
+        flash(f"Error al insertar el producto en el carrito {e}")
+        return None
+
+def registrar_producto_compra(id_compra,id_producto,cantidad,precio_cantidad):
+    try:
+        ruta=current_app.config['DATABASE_URI'].replace('sqlite:///','')
+        conexion=sqlite3.connect(ruta)
+
+        cursor=conexion.cursor()#para relizar consultas mediante un cursor
+        cursor.execute("INSERT INTO Productos_Compra (id_compra,id_producto,cantidad,precio_cantidad) VALUES (?,?,?,?)",(id_compra,id_producto,cantidad,precio_cantidad,))
+        conexion.commit()
+
+        conexion.close()
+        return True
+    except Exception as e:
+        flash(f"Error al insertar el producto en el carrito {e}")
+        return False
 
 carrito_compras=Carrito()
